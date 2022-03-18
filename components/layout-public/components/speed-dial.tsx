@@ -79,7 +79,7 @@ export default function HelpSpeedDial() {
             tooltipOpen
             sx={{ whiteSpace: "nowrap" }}
             onClick={() =>
-              window.open(action.url, "_blank", "height=600,width=500")
+              window.open(action.url, "_blank", "height=600,width=600")
             }
           />
         ))}

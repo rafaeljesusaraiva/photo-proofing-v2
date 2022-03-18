@@ -4,21 +4,25 @@ import Head from "next/head";
 import React, { ReactNode } from "react";
 
 import { Box, Container } from "@mui/material";
-import { FooterBar, HelpSpeedDial, NavigationBar } from "./components";
+import { NavigationSimple, FooterBar } from "./components";
 
 type Props = {
   children: ReactNode;
   title?: string;
 };
 
-const Layout = ({ children, title = website_config.website_name }: Props) => (
+const Layout = ({ children, title }: Props) => (
   <>
     <Head>
-      <title>{title}</title>
+      <title>
+        {title
+          ? `${title} - Apoio Técnico | ${website_config.website_name}`
+          : `Apoio Técnico | ${website_config.website_name}`}
+      </title>
     </Head>
     <Container maxWidth="lg" sx={{ my: 3, position: "relative" }}>
       <nav>
-        <NavigationBar />
+        <NavigationSimple title={title} />
       </nav>
       <Box component="main" sx={{ my: 3 }}>
         {children}
@@ -26,7 +30,6 @@ const Layout = ({ children, title = website_config.website_name }: Props) => (
       <Box component="footer">
         <FooterBar />
       </Box>
-      <HelpSpeedDial />
     </Container>
   </>
 );
