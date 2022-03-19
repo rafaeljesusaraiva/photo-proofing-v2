@@ -30,14 +30,14 @@ const pages = [
 const settings = [
   {
     name: "Perfil",
-    url: "/profile",
+    url: "/client/profile",
     icon: <PersonIcon />,
     private: true,
     adminOnly: false,
   },
   {
     name: "Encomendas",
-    url: "/orders",
+    url: "/client/orders",
     icon: <StoreIcon />,
     private: true,
     adminOnly: false,

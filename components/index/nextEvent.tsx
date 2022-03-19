@@ -14,7 +14,6 @@ const NextEvent = () => {
         .then((res) => res.json())
         .then((data) => {
           setNextEventData(data);
-          console.log(data);
           setLoading(false);
         });
     }
