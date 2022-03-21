@@ -4,6 +4,8 @@ import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 export const websiteConfig = {
   website_name: process.env.webConf_websiteName || "Provas Fotografia",
+  website_url:
+    process.env.NEXT_PUBLIC_webConf_websiteUrl || "http://localhost:3000/",
 };
 
 import { FirebaseOptions } from "firebase/app";
@@ -20,7 +22,7 @@ export const firebaseConfig: FirebaseOptions = {
 export const uiConfig = (firebase: any) => {
   return {
     signInFlow: "popup",
-    signInSuccessUrl: "/",
+    signInSuccessUrl: websiteConfig.website_url,
     tosUrl: "/help/terms-of-service",
     privacyPolicyUrl: "/help/privacy-policy",
     signInOptions: [

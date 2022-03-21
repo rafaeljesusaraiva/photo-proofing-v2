@@ -96,7 +96,7 @@ function NavigationBar() {
               <Link href="/profile" passHref>
                 <Avatar
                   alt="Imagem de perfil do cliente"
-                  src="/img/default-user-image.png"
+                  src={user.photoURL || "/img/default-user-image.png"}
                   sx={{ width: 100, height: 100, cursor: "pointer" }}
                 />
               </Link>
@@ -106,7 +106,7 @@ function NavigationBar() {
                   component="div"
                   sx={{ mt: 2, cursor: "pointer" }}
                 >
-                  Nome Utilizador
+                  {user.displayName}
                 </Typography>
               </Link>
             </ListItem>
