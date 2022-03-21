@@ -1,4 +1,4 @@
-import website_config from "../../config/index.config";
+import { websiteConfig } from "../../config/index.config";
 
 import Head from "next/head";
 import React, { ReactNode } from "react";
@@ -16,8 +16,8 @@ const Layout = ({ children, title }: Props) => (
     <Head>
       <title>
         {title
-          ? `${title} - Apoio Técnico | ${website_config.website_name}`
-          : `Apoio Técnico | ${website_config.website_name}`}
+          ? `${title} - Apoio Técnico | ${websiteConfig.website_name}`
+          : `Apoio Técnico | ${websiteConfig.website_name}`}
       </title>
     </Head>
     <Container maxWidth="lg" sx={{ my: 3, position: "relative" }}>

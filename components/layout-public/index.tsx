@@ -1,4 +1,4 @@
-import website_config from "../../config/index.config";
+import { websiteConfig } from "../../config/index.config";
 
 import Head from "next/head";
 import React, { ReactNode } from "react";
@@ -11,7 +11,7 @@ type Props = {
   title?: string;
 };
 
-const Layout = ({ children, title = website_config.website_name }: Props) => (
+const Layout = ({ children, title = websiteConfig.website_name }: Props) => (
   <>
     <Head>
       <title>{title}</title>

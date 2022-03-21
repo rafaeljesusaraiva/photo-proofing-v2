@@ -1,10 +1,15 @@
 import React, { ReactNode, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { firebaseAuth } from "../../../auth/initFirebase";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 import {
   AppBar,
   Avatar,
   Box,
   Button,
+  CircularProgress,
   Divider,
   List,
   ListItem,
@@ -21,7 +26,6 @@ import {
   Menu as MenuIcon,
   Store as StoreIcon,
 } from "@mui/icons-material";
-import Link from "next/link";
 
 const pages = [
   { name: "Início", url: "/" },
@@ -56,11 +60,12 @@ const settings = [
     private: true,
   },
 ];
-const isUserLoggedIn: boolean = true;
 
 function NavigationBar() {
   const [sideBarOpen, setSideBarOpen] = useState<boolean>(false);
-  const [userLoggedIn, setUserLoggedIn] = useState<boolean>(isUserLoggedIn);
+  const [user, loading, error] = useAuthState(firebaseAuth);
+  const router = useRouter();
+
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -84,7 +89,7 @@ function NavigationBar() {
       onKeyDown={toggleDrawer(false)}
     >
       {/* User Section */}
-      {userLoggedIn ? (
+      {user ? (
         <>
           <List sx={{ mt: 3, mb: 3 }}>
             <ListItem sx={{ flexDirection: "column", alignContent: "center" }}>
@@ -189,15 +194,16 @@ function NavigationBar() {
               flexGrow: 0,
             }}
           >
+            {/* Side Menu Icon & Account Button */}
             <Button
               onClick={toggleDrawer(true)}
               color={"inherit"}
               sx={{
-                display: { xs: "flex", md: !userLoggedIn ? "none" : "flex" },
+                display: { xs: "flex", md: !user ? "none" : "flex" },
               }}
             >
               <MenuIcon sx={{ display: { xs: "flex", md: "none" } }} />
-              {userLoggedIn ? (
+              {user ? (
                 <Avatar
                   alt="Imagem de perfil do cliente"
                   src="/img/default-user-image.png"
@@ -207,7 +213,10 @@ function NavigationBar() {
                 <></>
               )}
             </Button>
-            {!userLoggedIn ? (
+            {/* Login Button */}
+            {loading ? (
+              <CircularProgress />
+            ) : !user ? (
               <Link href="/auth/login" passHref>
                 <Button
                   color={"inherit"}
