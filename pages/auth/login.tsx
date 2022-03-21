@@ -1,16 +1,43 @@
-import type { NextPage } from "next";
-import {
-  Button,
-  TextField,
-  Link,
-  Paper,
-  Box,
-  Grid,
-  Typography,
-} from "@mui/material";
-import Head from "next/head";
+import type { ReactElement } from "react";
+import { Button, TextField, Link, Box, Grid, Typography } from "@mui/material";
+import Layout from "../../components/layout-auth";
 
-const Login: NextPage = () => {
+// Firebase related
+import { useAuthState } from "react-firebase-hooks/auth";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { firebaseApp, firebaseAuth } from "../../auth/initFirebase";
+import { uiConfig } from "../../config/index.config";
+import { useRouter } from "next/router";
+
+const Auth_Login = () => {
+  // Get Firebase User Data
+  const [user, loading, error] = useAuthState(firebaseAuth);
+  const router = useRouter();
+
+  if (loading)
+    return (
+      <Typography component="h2" variant="h6">
+        A Carregar...
+      </Typography>
+    );
+  else if (error)
+    return (
+      <>
+        <Typography component="h2" variant="h6">
+          Erro
+        </Typography>
+        <Typography component="h5" variant="h6">
+          {error}
+        </Typography>
+      </>
+    );
+  else if (user) {
+    // user is already logged in, redirect to home page
+    router.push("/");
+  }
+
+  const authConfig = uiConfig(firebaseApp);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -22,120 +49,66 @@ const Login: NextPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Iniciar Sessão - Provas Fotografia</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <Grid container component="main" sx={{ height: "100vh" }}>
-        {/* Background Image */}
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: "url(/img/login-background.jpg)",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "dark"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+      <Typography component="h1" variant="h4">
+        Inicie Sessão
+      </Typography>
+      <Typography component="h2" variant="h6">
+        Para continuar
+      </Typography>
+      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          autoFocus
+          autoComplete="email"
+          name="email"
+          label="Email"
         />
-        {/* Login Section */}
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={1}
-          square
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography component="h1" variant="h4">
-              Inicie Sessão
-            </Typography>
-            <Typography component="h2" variant="h6">
-              Para continuar
-            </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                autoFocus
-                autoComplete="email"
-                name="email"
-                label="Email"
-              />
-              <TextField
-                margin="normal"
-                type="password"
-                required
-                fullWidth
-                autoComplete="current-password"
-                label="Palavra-passe"
-                name="password"
-              />
+        <TextField
+          margin="normal"
+          type="password"
+          required
+          fullWidth
+          autoComplete="current-password"
+          label="Palavra-passe"
+          name="password"
+        />
 
-              <Grid container spacing={2} justifyContent="space-between">
-                <Grid item>
-                  <Link href="/auth/create-account" variant="body2">
-                    <Button variant="outlined" sx={{ mt: 3, mb: 2 }}>
-                      Criar conta
-                    </Button>
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Entrar
-                  </Button>
-                </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="/auth/recover-account" variant="body2">
-                    Esqueceu-se da palavra-passe?
-                  </Link>
-                </Grid>
-              </Grid>
-              <Link href="/">
-                <Button fullWidth variant="text" sx={{ mt: 12, mb: 2 }}>
-                  Regressar à página Inicial
-                </Button>
-              </Link>
-            </Box>
-          </Box>
+        <Grid container spacing={2} justifyContent="space-between">
+          <Grid item>
+            <Link href="/auth/create-account" variant="body2">
+              <Button variant="outlined" sx={{ mt: 3, mb: 2 }}>
+                Criar conta
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+              Entrar
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
+        <Grid container sx={{ mb: 6 }}>
+          <Grid item xs>
+            <Link href="/auth/recover-account" variant="body2">
+              Esqueceu-se da palavra-passe?
+            </Link>
+          </Grid>
+        </Grid>
+        <StyledFirebaseAuth uiConfig={authConfig} firebaseAuth={firebaseAuth} />
+        <Link href="/">
+          <Button fullWidth variant="text" sx={{ mt: 2, mb: 2 }}>
+            Regressar à página Inicial
+          </Button>
+        </Link>
+      </Box>
     </>
   );
 };
 
-export default Login;
+Auth_Login.getLayout = function getLayout(page: ReactElement) {
+  return <Layout title="Questões Frequentes">{page}</Layout>;
+};
+
+export default Auth_Login;

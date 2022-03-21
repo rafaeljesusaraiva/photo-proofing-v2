@@ -37,6 +37,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-# config files
-/config/index.config.ts

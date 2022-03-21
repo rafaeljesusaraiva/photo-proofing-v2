@@ -18,6 +18,7 @@ import darkTheme from "../utility/mui_darktheme";
 
 import "../styles/globals.css";
 
+// Load Layout Properties
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
