@@ -11,6 +11,7 @@ import "@fontsource/roboto/700.css";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
+import { useEffect } from "react";
 
 import createEmotionCache from "../utility/createEmotionCache";
 import darkTheme from "../utility/mui_darktheme";
@@ -32,10 +33,18 @@ type AppPropsWithLayout = AppProps & {
 };
 // End MUI Setup
 
+import { getAnalytics } from "firebase/analytics";
+import { firebaseApp } from "../auth/initFirebase";
+let firebaseAnalytics;
+
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const { emotionCache = clientSideEmotionCache } = pageProps;
 
   const getLayout = Component.getLayout ?? ((page) => page);
+
+  useEffect(() => {
+    firebaseAnalytics = getAnalytics(firebaseApp);
+  }, []);
 
   return (
     <CacheProvider value={emotionCache}>
