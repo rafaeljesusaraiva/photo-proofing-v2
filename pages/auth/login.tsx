@@ -108,7 +108,7 @@ const Auth_Login = () => {
 };
 
 Auth_Login.getLayout = function getLayout(page: ReactElement) {
-  return <Layout title="Questões Frequentes">{page}</Layout>;
+  return <Layout title="Iniciar Sessão">{page}</Layout>;
 };
 
 export default Auth_Login;
