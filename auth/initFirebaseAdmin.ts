@@ -29,3 +29,5 @@
 
 // const firebaseAdmin = createFirebaseAdminApp(options);
 // export const adminAuth = getAuth(firebaseAdmin);
+
+export {};
