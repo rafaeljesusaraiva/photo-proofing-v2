@@ -96,6 +96,9 @@ const Auth_Login = () => {
             </Link>
           </Grid>
         </Grid>
+        <Typography component="h2" variant="h6" sx={{ textAlign: "center" }}>
+          Ou use
+        </Typography>
         <StyledFirebaseAuth uiConfig={authConfig} firebaseAuth={firebaseAuth} />
         <Link href="/">
           <Button fullWidth variant="text" sx={{ mt: 2, mb: 2 }}>

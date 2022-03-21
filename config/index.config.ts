@@ -14,6 +14,7 @@ export const firebaseConfig: FirebaseOptions = {
   storageBucket: process.env.NEXT_PUBLIC_firebaseConf_storageBucket,
   messagingSenderId: process.env.NEXT_PUBLIC_firebaseConf_messagingSenderId,
   appId: process.env.NEXT_PUBLIC_firebaseConf_appId,
+  measurementId: process.env.NEXT_PUBLIC_firebaseConf_measurementId,
 };
 
 export const uiConfig = (firebase: any) => {
