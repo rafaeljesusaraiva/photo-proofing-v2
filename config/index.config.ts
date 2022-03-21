@@ -8,12 +8,12 @@ export const websiteConfig = {
 
 import { FirebaseOptions } from "firebase/app";
 export const firebaseConfig: FirebaseOptions = {
-  apiKey: process.env.firebaseConf_apiKey || "",
-  authDomain: process.env.firebaseConf_authDomain || "",
-  projectId: process.env.firebaseConf_projectId || "",
-  storageBucket: process.env.firebaseConf_storageBucket || "",
-  messagingSenderId: process.env.firebaseConf_messagingSenderId || "",
-  appId: process.env.firebaseConf_appId || "",
+  apiKey: process.env.NEXT_PUBLIC_firebaseConf_apiKey,
+  authDomain: process.env.NEXT_PUBLIC_firebaseConf_authDomain,
+  projectId: process.env.NEXT_PUBLIC_firebaseConf_projectId,
+  storageBucket: process.env.NEXT_PUBLIC_firebaseConf_storageBucket,
+  messagingSenderId: process.env.NEXT_PUBLIC_firebaseConf_messagingSenderId,
+  appId: process.env.NEXT_PUBLIC_firebaseConf_appId,
 };
 
 export const uiConfig = (firebase: any) => {
