@@ -1,7 +1,6 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { firebaseAuth } from "../../../auth/initFirebase";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 import {
@@ -19,52 +18,12 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import {
-  AdminPanelSettings as AdminPanelSettingsIcon,
-  Logout as LogoutIcon,
-  Person as PersonIcon,
-  Menu as MenuIcon,
-  Store as StoreIcon,
-} from "@mui/icons-material";
-
-const pages = [
-  { name: "Início", url: "/" },
-  { name: "Eventos", url: "/events" },
-];
-const settings = [
-  {
-    name: "Perfil",
-    url: "/client/profile",
-    icon: <PersonIcon />,
-    private: true,
-    adminOnly: false,
-  },
-  {
-    name: "Encomendas",
-    url: "/client/orders",
-    icon: <StoreIcon />,
-    private: true,
-    adminOnly: false,
-  },
-  {
-    name: "Administração",
-    url: "/administration",
-    icon: <AdminPanelSettingsIcon />,
-    private: true,
-    adminOnly: true,
-  },
-  {
-    name: "Terminar Sessão",
-    url: "/auth/logout",
-    icon: <LogoutIcon />,
-    private: true,
-  },
-];
+import { Menu as MenuIcon } from "@mui/icons-material";
+import { pages, settings } from "./navigation-bar.url";
 
 function NavigationBar() {
   const [sideBarOpen, setSideBarOpen] = useState<boolean>(false);
   const [user, loading, error] = useAuthState(firebaseAuth);
-  const router = useRouter();
 
   const iOS =
     typeof navigator !== "undefined" &&
