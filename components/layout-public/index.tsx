@@ -16,7 +16,7 @@ const Layout = ({ children, title = websiteConfig.website_name }: Props) => (
     <Head>
       <title>{title}</title>
     </Head>
-    <Container maxWidth="lg" sx={{ my: 3, position: "relative" }}>
+    <Container maxWidth="xl" sx={{ my: 3, position: "relative" }}>
       <nav>
         <NavigationBar />
       </nav>
