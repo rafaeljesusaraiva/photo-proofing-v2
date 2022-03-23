@@ -27,7 +27,7 @@ export default function AllEvents() {
         requestApiData(requestUrl);
       }, 30000);
     }
-  });
+  }, []);
 
   async function requestApiData(url: string) {
     setLoading(true);

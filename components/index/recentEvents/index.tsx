@@ -31,7 +31,7 @@ export default function RecentEvents() {
         requestApiData(requestUrl);
       }, 30000);
     }
-  });
+  }, []);
 
   async function requestApiData(url: string) {
     setLoading(true);
