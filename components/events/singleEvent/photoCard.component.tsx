@@ -31,7 +31,7 @@ let randomImage = () =>
 
 const PhotoCard = ({ cardInfo, counter }: PhotoCardType) => (
   <Card raised sx={{ position: "relative" }}>
-    <CardContent sx={{ minHeight: 150, zIndex: "10", pb: 1, px: 0, pt: 0 }}>
+    <CardContent sx={{ minHeight: 150, zIndex: "10", p: 0 }}>
       {/* <Avatar variant="square" sx={{ width: "100%" }}></Avatar> */}
       <Box>
         {/* <Image src={randomImage()} alt={cardInfo.alt} layout="fill" /> */}
@@ -67,7 +67,7 @@ const SizeSelector = ({ sizeList, counter }: SizeSelectorType) => {
     setSelectedSize(event.target.value);
 
   return (
-    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+    <FormControl variant="standard" size="small" sx={{ m: 1, minWidth: 120 }}>
       <InputLabel id={"label-select-size-" + counter}>Tamanho</InputLabel>
       <Select
         labelId={"label-select-size-" + counter}
