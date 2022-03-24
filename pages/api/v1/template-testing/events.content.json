@@ -1,0 +1,30 @@
+[
+  {
+    "backgroundImage": "/img/default-event-cover.jpg",
+    "publicAvailability": "Disponível até 29 de março",
+    "isAvailable": true,
+    "title": "KDD - Festa Natal",
+    "slug": "event_test"
+  },
+  {
+    "backgroundImage": "/img/default-event-cover.jpg",
+    "publicAvailability": "Disponível até 18 de março",
+    "isAvailable": false,
+    "title": "Evento #3",
+    "slug": "event_3"
+  },
+  {
+    "backgroundImage": "/img/default-event-cover.jpg",
+    "publicAvailability": "Disponível até 10 de março",
+    "isAvailable": false,
+    "title": "Evento #2",
+    "slug": "event_2"
+  },
+  {
+    "backgroundImage": "/img/default-event-cover.jpg",
+    "publicAvailability": "Disponível até 3 de março",
+    "isAvailable": false,
+    "title": "Evento #1",
+    "slug": "event_1"
+  }
+]
