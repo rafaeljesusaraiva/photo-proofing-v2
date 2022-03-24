@@ -65,7 +65,7 @@ const EventCard = ({ event }: EventCardType) => (
       </Typography>
     </CardContent>
     <CardActions sx={{ float: "right", zIndex: "10" }}>
-      <Link href={event.url} passHref>
+      <Link href={`/events/${event.slug}`} passHref>
         <Button size="small">Abrir Evento</Button>
       </Link>
     </CardActions>
