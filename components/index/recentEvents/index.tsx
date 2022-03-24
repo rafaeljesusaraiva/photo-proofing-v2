@@ -14,7 +14,7 @@ import EventCardLoading from "./eventCardLoading.component";
 
 const template_testing = true;
 const requestUrl = template_testing
-  ? "api/v1/template-testing/recentEvents"
+  ? "/api/v1/template-testing/recentEvents"
   : "";
 
 export default function RecentEvents() {

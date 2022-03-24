@@ -10,7 +10,7 @@ const NextEvent = () => {
   useEffect(() => {
     if (!nextEventData) {
       setLoading(true);
-      fetch(template_testing ? "api/v1/template-testing/nextEvent" : "")
+      fetch(template_testing ? "/api/v1/template-testing/nextEvent" : "")
         .then((res) => res.json())
         .then((data) => {
           setNextEventData(data);
