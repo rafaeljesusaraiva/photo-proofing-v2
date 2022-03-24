@@ -5,7 +5,7 @@ export type ErrorSection = {
 };
 
 export type PhotosSection = {
-  children?: ReactNode;
+  children?: any;
 };
 
 export type EventData = {
