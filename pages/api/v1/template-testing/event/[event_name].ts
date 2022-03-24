@@ -22,7 +22,8 @@ export default function handler(
   res: NextApiResponse<AlbumData | NotFoundMessage>
 ) {
   const { event_name } = req.query;
-  let found: AlbumData | undefined = eventList.find((e: any) => {
+  // let found: AlbumData | undefined = eventList.find((e: any) => {
+  let found: any | undefined = eventList.find((e: any) => {
     if (e.slug === event_name) {
       let temp = e;
       temp.images = new Array(50).fill({
