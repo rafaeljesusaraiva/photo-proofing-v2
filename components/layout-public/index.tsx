@@ -17,7 +17,7 @@ const Layout = ({ children, title = websiteConfig.website_name }: Props) => (
       <title>{title}</title>
     </Head>
     <Container maxWidth="xl" sx={{ my: 3, position: "relative" }}>
-      <nav>
+      <nav style={{ position: "sticky", top: "24px", zIndex: 999 }}>
         <NavigationBar />
       </nav>
       <Box component="main" sx={{ my: 3 }}>
